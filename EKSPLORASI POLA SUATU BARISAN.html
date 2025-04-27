@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Eksplorasi Barisan Aritmetika</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #e0f0ff, #ffffff);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      flex: 1;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+    p {
+      text-align: center;
+      font-size: 18px;
+    }
+    .soal {
+      background: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 3px 10px rgba(0,0,0,0.15);
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    footer {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+    #slide2, #slide3 {
+      display: none;
+    }
+    #infoTabel {
+      display: none;
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #003366;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #003366;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Slide 1 -->
+<div class="container" id="slide1">
+  <h1>Eksplorasi Barisan Aritmetika</h1>
+  <p>Temukan pola barisan dari soal berikut!</p>
+
+  <div id="container1"></div>
+
+  <div style="text-align:center; margin-top:20px;">
+    <button class="btn" onclick="tampilkanSlide2()">➡️ Lanjut ke Slide 2</button>
+  </div>
+</div>
+
+<!-- Slide 2 -->
+<div class="container" id="slide2">
+  <h1>Menentukan Suku Berikutnya</h1>
+  <p>Lanjutkan 3 suku berikutnya!</p>
+
+  <div id="container2"></div>
+
+  <div style="text-align:center; margin-top:20px;">
+    <button class="btn" onclick="tampilkanSlide1()">⬅️ Kembali ke Slide 1</button>
+    <button class="btn" onclick="tampilkanSlide3()">➡️ Lanjut ke Slide 3</button>
+  </div>
+</div>
+
+<!-- Slide 3 -->
+<div class="container" id="slide3">
+  <h1>Identifikasi Barisan Aritmetika</h1>
+  <p>Beberapa diantara barisan yang telah kalian eksplorasi sebelumnya adalah barisan aritmetika.<br>
+  Tahukah kalian mana saja barisan itu?</p>
+
+  <div style="text-align:center; margin-top:20px;">
+    <button class="btn" onclick="tampilkanTabel()">📋 Tampilkan Informasi Lanjut</button>
+  </div>
+
+  <div id="infoTabel">
+    <table>
+      <tr>
+        <th>Barisan Aritmetika</th>
+        <th>Barisan Non-Aritmetika</th>
+      </tr>
+      <tr>
+        <td>5,10,15,20,25,30</td>
+        <td>3,6,12,24,48,96</td>
+      </tr>
+      <tr>
+        <td>100,95,90,85,80,75</td>
+        <td>1,4,9,16,25,36</td>
+      </tr>
+      <tr>
+        <td>2,4,6,8,10,12</td>
+        <td>1,1,2,3,5,8,13</td>
+      </tr>
+      <tr>
+        <td>7,14,21,28,35,42</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>9,18,27,36,45,54</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>20,18,16,14,12,10</td>
+        <td>-</td>
+      </tr>
+    </table>
+
+    <p style="margin-top:20px;">Dari tabel diatas, apa ciri khusus barisan aritmetika?</p>
+  </div>
+
+  <div style="margin-top:30px; display: flex; justify-content: center; gap: 20px;">
+    <button class="btn" onclick="tampilkanSlide2()">⬅️ Kembali ke Slide 2</button>
+    <button class="btn" onclick="selesaiEksplorasi()">✅ Selesai Eksplorasi</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  Disusun Oleh : Maulida Aulia (23030174163)
+</footer>
+
+<!-- Javascript -->
+<script>
+  // Data Soal
+  const soalBarisan1 = [
+    { suku: [5, 10, 15, 20, 25, 30], jawaban: "+5" },
+    { suku: [100, 95, 90, 85, 80, 75], jawaban: "-5" },
+    { suku: [3, 6, 12, 24, 48, 96], jawaban: "×2" },
+    { suku: [2, 5, 10, 17, 26, 37], jawaban: "+3,+5,+7,..." },
+    { suku: [1, 4, 9, 16, 25, 36], jawaban: "Kuadrat" }
+  ];
+
+  const soalBarisan2 = [
+    { suku: [2, 4, 6, 8, 10, 12], jawaban: "14,16,18" },
+    { suku: [7, 14, 21, 28, 35, 42], jawaban: "49,56,63" },
+    { suku: [1, 1, 2, 3, 5, 8, 13], jawaban: "21,34,55" },
+    { suku: [9, 18, 27, 36, 45, 54, 63], jawaban: "72,81,90" },
+    { suku: [20, 18, 16, 14, 12, 10], jawaban: "8,6,4" }
+  ];
+
+  // Menampilkan Soal Slide 1
+  const container1 = document.getElementById('container1');
+  soalBarisan1.forEach((item, index) => {
+    const soalDiv = document.createElement('div');
+    soalDiv.className = 'soal';
+    soalDiv.innerHTML = `
+      <p><strong>Soal ${index + 1}:</strong> ${item.suku.join(", ")}</p>
+      <input type="text" id="input1-${index}" placeholder="Tulis pola barisan...">
+      <button class="btn" onclick="cekJawaban1(${index})">Cek Jawaban</button>
+      <div id="feedback1-${index}" class="feedback"></div>
+    `;
+    container1.appendChild(soalDiv);
+  });
+
+  // Menampilkan Soal Slide 2
+  const container2 = document.getElementById('container2');
+  soalBarisan2.forEach((item, index) => {
+    const soalDiv = document.createElement('div');
+    soalDiv.className = 'soal';
+    soalDiv.innerHTML = `
+      <p><strong>Soal ${index + 1}:</strong> ${item.suku.join(", ")}</p>
+      <input type="text" id="input2-${index}" placeholder="Tulis 3 suku berikutnya...">
+      <button class="btn" onclick="cekJawaban2(${index})">Cek Jawaban</button>
+      <div id="feedback2-${index}" class="feedback"></div>
+    `;
+    container2.appendChild(soalDiv);
+  });
+
+  // Cek Jawaban Slide 1
+  function cekJawaban1(index) {
+    const userInput = document.getElementById(`input1-${index}`).value.trim().toLowerCase();
+    const correctAnswer = soalBarisan1[index].jawaban.toLowerCase();
+    const feedback = document.getElementById(`feedback1-${index}`);
+
+    if (userInput === correctAnswer) {
+      feedback.textContent = "✅ Bagus sekali!";
+      feedback.style.color = "green";
+    } else {
+      feedback.textContent = "❌ Ayo lebih teliti lagi!";
+      feedback.style.color = "red";
+    }
+  }
+
+  // Cek Jawaban Slide 2
+  function cekJawaban2(index) {
+    const userInput = document.getElementById(`input2-${index}`).value.replace(/\s/g, "").toLowerCase();
+    const correctAnswer = soalBarisan2[index].jawaban.replace(/\s/g, "").toLowerCase();
+    const feedback = document.getElementById(`feedback2-${index}`);
+
+    if (userInput === correctAnswer) {
+      feedback.textContent = "✅ Bagus sekali!";
+      feedback.style.color = "green";
+    } else {
+      feedback.textContent = "❌ Ayo lebih teliti lagi!";
+      feedback.style.color = "red";
+    }
+  }
+
+  // Navigasi antar slide
+  function tampilkanSlide1() {
+    document.getElementById('slide1').style.display = 'block';
+    document.getElementById('slide2').style.display = 'none';
+    document.getElementById('slide3').style.display = 'none';
+  }
+
+  function tampilkanSlide2() {
+    document.getElementById('slide1').style.display = 'none';
+    document.getElementById('slide2').style.display = 'block';
+    document.getElementById('slide3').style.display = 'none';
+  }
+
+  function tampilkanSlide3() {
+    document.getElementById('slide1').style.display = 'none';
+    document.getElementById('slide2').style.display = 'none';
+    document.getElementById('slide3').style.display = 'block';
+  }
+
+  function tampilkanTabel() {
+    document.getElementById('infoTabel').style.display = 'block';
+  }
+
+  function selesaiEksplorasi() {
+    alert("Terima kasih telah mengikuti eksplorasi!");
+    window.location.href = "about:blank";
+  }
+</script>
+
+</body>
+</html>
